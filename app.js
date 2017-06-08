@@ -5,6 +5,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
 const http = require('http');
 
 app.set('views', path.join(__dirname, 'app', 'views'));
@@ -19,6 +21,9 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 const controller = require('./app/controllers/index');
 app.use(controller);
