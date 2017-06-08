@@ -1,16 +1,32 @@
 const LocalStrategy = require('passport-local').Strategy;
+const User = require('../../../app/models/user');
 
 module.exports = new LocalStrategy(
     {
         usernameField: 'username',
-        passwordField: 'password'
+        passwordField: 'password',
+        passReqToCallback: true
     },
-    function (username, password, done) {
-        console.log("[signup] username: " + username + ", password: " + password);
+    function (req, username, password, done) {
+        User.findOne({
+            username: username
+        }, function (err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (user) {
+                return done(null, false, req.flash("Username " + username + " is already exist"));
+            }
 
-        done(null, {
-            username: username,
-            password: password
+            User.create(username, password, function (err, user) {
+                if (err) {
+                    return done(err);
+                }
+                if (!user) {
+                    return done(null, false, req.flash("Sign up is failed"));
+                }
+                return done(null, user);
+            });
         });
     }
 );
