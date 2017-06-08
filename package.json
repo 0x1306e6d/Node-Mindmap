@@ -1,0 +1,15 @@
+{
+  "name": "mindmapjs",
+  "version": "0.0.0",
+  "description": "Mindmap Application with Node.js and D3.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "homepage": "https://github.com/0x1306e6d/mindmapjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x1306e6d/mindmapjs.git"
+  }
+}
