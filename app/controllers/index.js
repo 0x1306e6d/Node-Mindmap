@@ -1,16 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function (req, res) {
-    if (req.isAuthenticated()) {
+const auth = require('./auth');
+const dashboard = require('./dashboard');
 
+router.use('/auth', auth);
+
+router.use(function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
     } else {
         res.redirect('/auth/signin');
     }
 });
 
-const auth = require('./auth');
+router.use('/dashboard', dashboard);
 
-router.use('/auth', auth);
+router.use(function (req, res) {
+    res.redirect('/dashboard');
+});
 
 module.exports = router;

@@ -3,6 +3,14 @@ const passport = require('passport');
 
 const router = express.Router();
 
+router.use(function (req, res, next) {
+    if (req.isUnauthenticated()) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+});
+
 router.route('/signin')
     .get(function (req, res) {
         res.render('layouts/signin');
@@ -24,5 +32,9 @@ router.route('/signup')
             failureFlash: true
         })
     );
+
+router.use(function (req, res) {
+    res.redirect('/auth/signin');
+});
 
 module.exports = router;
