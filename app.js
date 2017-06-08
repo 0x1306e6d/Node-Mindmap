@@ -9,6 +9,9 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const http = require('http');
 
+const controller = require('./app/controllers/index');
+const config = require('./config/config');
+
 app.set('views', path.join(__dirname, 'app', 'views'));
 app.set('view engine', 'pug');
 
@@ -24,9 +27,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
-const controller = require('./app/controllers/index');
 app.use(controller);
+
+config.configure();
 
 var port = process.env.PORT | 3000;
 var server = http.createServer(app);
