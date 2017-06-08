@@ -1,0 +1,20 @@
+extends ../layout
+
+append meta
+    title Dashboard
+
+block body
+    include ../components/navbar
+
+    .container
+        .row
+            .col-xs-offset-2.col-xs-8.col-lg-offset-3.col-lg-6
+                form(action="/mindmap" method="post")
+                    .form-group
+                        input.form-control.input-lg(type="text" name="title" placeholder="Create new mindmap")
+                    button(type="submit" hidden)
+        .list-group
+            each mindmap in mindmaps
+                a.list-group-item(href="/mindmap")
+                    h3.list-group-item-heading= mindmap.title
+                    p.list-group-item-text Created at #{mindmap.create_time.toString()}

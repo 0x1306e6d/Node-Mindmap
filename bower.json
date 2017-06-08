@@ -1,0 +1,14 @@
+{
+  "name": "mindmapjs",
+  "description": "Mindmap Application with Node.js and D3.js",
+  "license": "MIT",
+  "private": true,
+  "homepage": "https://github.com/0x1306e6d/mindmapjs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

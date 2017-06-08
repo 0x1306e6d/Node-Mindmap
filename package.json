@@ -1,0 +1,27 @@
+{
+  "name": "mindmapjs",
+  "version": "0.0.0",
+  "description": "Mindmap Application with Node.js and D3.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "homepage": "https://github.com/0x1306e6d/mindmapjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x1306e6d/mindmapjs.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "mongoose": "^4.10.5",
+    "morgan": "^1.8.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.0-rc.2"
+  }
+}
