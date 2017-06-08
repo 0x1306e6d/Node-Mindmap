@@ -5,12 +5,17 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
 const http = require('http');
+
+const controller = require('./app/controllers/index');
+const config = require('./config/config');
 
 app.set('views', path.join(__dirname, 'app', 'views'));
 app.set('view engine', 'pug');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'resources')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -19,6 +24,12 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+app.use(controller);
+
+config.configure();
 
 var port = process.env.PORT | 3000;
 var server = http.createServer(app);
