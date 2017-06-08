@@ -20,6 +20,9 @@ app.use(session({
     saveUninitialized: true
 }));
 
+const controller = require('./app/controllers/index');
+app.use(controller);
+
 var port = process.env.PORT | 3000;
 var server = http.createServer(app);
 
