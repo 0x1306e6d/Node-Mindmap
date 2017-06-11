@@ -2,7 +2,7 @@ const passport = require('./passport/passport');
 
 module.exports = {
     mongodb: {
-        url: "mongodb://localhost/mindmapjs"
+        url: (process.env.MONGODB_URI || "mongodb://localhost/mindmapjs")
     },
     configure: function () {
         passport();

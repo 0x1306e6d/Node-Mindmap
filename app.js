@@ -35,7 +35,7 @@ config.configure();
 mongoose.connect(config.mongodb.url);
 mongoose.connection.on('error', console.error.bind(console, "mongoose Error : "));
 
-var port = process.env.PORT | 3000;
+var port = process.env.PORT || 3000;
 var server = http.createServer(app);
 
 server.on('error', onError);
