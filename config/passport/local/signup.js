@@ -15,7 +15,7 @@ module.exports = new LocalStrategy(
                 return done(err);
             }
             if (user) {
-                return done(null, false, req.flash("Username " + username + " is already exist"));
+                return done(null, false, req.flash('signup', "Username " + username + " is already exist"));
             }
 
             User.create(username, password, function (err, user) {
@@ -23,7 +23,7 @@ module.exports = new LocalStrategy(
                     return done(err);
                 }
                 if (!user) {
-                    return done(null, false, req.flash("Sign up is failed"));
+                    return done(null, false, req.flash('signup', "Sign up is failed"));
                 }
                 return done(null, user);
             });
