@@ -3,10 +3,13 @@ extends ../layout
 append meta
     title Mindmap - Sign Up
 
+append style
+    link(rel="stylesheet" href="/css/sign.css")
+
 block body
     .container
         h1.text-center
-            a(href="/") Mindmap
+            a.sign-brand(href="/") Mindmap
         .row
             .col-xs-offset-2.col-xs-8.col-sm-offset-3.col-sm-6.col-lg-offset-4.col-lg-4
                 form(action="/auth/signup" method="POST")
@@ -16,5 +19,5 @@ block body
                     .form-group
                         label(for="password") password
                         input.form-control(type="password" id="password" name="password")
-                    button.btn.btn-default.btn-block(type="submit") Sign Up
-                a.btn.btn-default.btn-block(href="/auth/signin") Sign In
+                    button.btn.btn-asphalt.btn-block(type="submit") Sign Up
+                a.btn.btn-asphalt.btn-block(href="/auth/signin") Sign In
