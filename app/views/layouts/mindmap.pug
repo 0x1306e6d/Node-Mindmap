@@ -9,12 +9,8 @@ append style
 block body
     include ../components/navbar
 
-    .container
-        .row
-            #mindmap-container.col-xs-12.col-lg-8
-                svg#mindmap(onload='load("' + mindmap._id + '")')
-            .col-xs-12.col-lg-4
-                .list-group
+    #mindmap-container.container
+        svg#mindmap(onload='load("' + mindmap._id + '")')
 
     include ../components/modal
 
