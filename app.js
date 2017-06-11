@@ -12,7 +12,6 @@ const http = require('http');
 
 const config = require('./config/config');
 const controller = require('./app/controllers/index');
-const io = require('./io');
 
 app.set('views', path.join(__dirname, 'app', 'views'));
 app.set('view engine', 'pug');
@@ -38,8 +37,6 @@ mongoose.connection.on('error', console.error.bind(console, "mongoose Error : ")
 
 var port = process.env.PORT | 3000;
 var server = http.createServer(app);
-
-io(server);
 
 server.on('error', onError);
 server.on('listening', onListening);

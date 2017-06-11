@@ -1,14 +1,14 @@
 var _id;
-var socket = io();
 var svg = d3.select('#mindmap');
 var g = svg.append('g').attr("transform", "translate(40,0)");
-var tree = d3.tree().size([800, 600]);
+var tree = d3.tree();
 
 function load(id) {
     _id = id;
 
-    socket.on('nodes', onNodes);
-    socket.emit('nodes', id);
+    $.get('/mindmap/' + id + '/nodes', function (data) {
+        onNodes(data);
+    });
 }
 
 function onNodes(data) {
@@ -36,14 +36,12 @@ function draw(root) {
         .attr("transform", function (d) {
             return "translate(" + d.y + "," + d.x + ")";
         });
-
     node.append("circle")
         .attr("r", 8)
         .on('click', function (d) {
             $('#add-node-modal-parent').val(d.data.id);
             $('#add-node-modal').modal();
         });
-
     node.append("text")
         .attr("dy", 3)
         .attr("x", function (d) {
@@ -60,38 +58,6 @@ function draw(root) {
             $('#edit-node-modal-id').val(d.data.id);
             $('#edit-node-modal').modal();
         });
-}
-
-function addNode() {
-    var $name = $('#add-node-modal-name');
-    var name = $name.val();
-    var parent = $('#add-node-modal-parent').val();
-
-    if (name) {
-        socket.emit('add-node', _id, {
-            name: name,
-            parent: parent
-        });
-    } else {
-        $name.attr('placeholder', "Name is empty. Please enter new node's name");
-        $name.focus();
-    }
-}
-
-function editNode() {
-    var $name = $('#edit-node-modal-name');
-    var id = $('#edit-node-modal-id').val();
-    var name = $name.val();
-
-    if (name) {
-        socket.emit('edit-node', _id, {
-            id: id,
-            name: name
-        });
-    } else {
-        $name.attr('placeholder', "Name is empty. Please enter new node's name");
-        $name.focus();
-    }
 }
 
 $(window).on('resize', function () {

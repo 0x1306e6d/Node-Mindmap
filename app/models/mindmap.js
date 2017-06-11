@@ -33,7 +33,7 @@ schema.methods.addNode = function (name, parent, callback) {
         this.markModified('nodes');
         this.save(callback);
     } else {
-        console.error("Failed to find node to add. id: " + id);
+        console.error("Failed to find node to add. id: " + this._id);
     }
 };
 
@@ -44,7 +44,7 @@ schema.methods.editNode = function (id, name, callback) {
         this.markModified('nodes');
         this.save(callback);
     } else {
-        console.error("Failed to find node to edit. id: " + id);
+        console.error("Failed to find node to edit. id: " + this._id);
     }
 };
 
