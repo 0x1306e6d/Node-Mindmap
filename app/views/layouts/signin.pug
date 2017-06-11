@@ -15,9 +15,9 @@ block body
                 form(action="/auth/signin" method="POST")
                     .form-group
                         label(for="username") username
-                        input.form-control(type="text" id="username" name="username")
+                        input.form-control(type="text" id="username" name="username" required)
                     .form-group
                         label(for="password") password
-                        input.form-control(type="password" id="password" name="password")
+                        input.form-control(type="password" id="password" name="password" required)
                     button.btn.btn-asphalt.btn-block(type="submit") Sign In
                 a.btn.btn-asphalt.btn-block(href="/auth/signup") Sign Up
