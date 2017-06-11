@@ -15,6 +15,6 @@ block body
                     button(type="submit" hidden)
         .list-group
             each mindmap in mindmaps
-                a.list-group-item(href="/mindmap")
+                a.list-group-item(href="/mindmap/" + mindmap._id)
                     h3.list-group-item-heading= mindmap.title
                     p.list-group-item-text Created at #{mindmap.create_time.toString()}
