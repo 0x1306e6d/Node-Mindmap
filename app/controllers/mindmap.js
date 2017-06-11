@@ -66,10 +66,16 @@ router.route('/:id/nodes')
                     } else if (_method === 'edit') {
                         var id = req.body.id;
                         var name = req.body.name;
-                        var remove = req.body.remove;
-
-                        if (remove === true) {
-                            mindmap.removeNode(id, function (err, mindmap) {
+                        mindmap.editNode(id, name, function (err, mindmap) {
+                                if (err) {
+                                    console.error("Failed to edit node.", err);
+                                } else {
+                                    res.redirect('/mindmap/' + _id);
+                                }
+                            });
+                    } else if (_method === 'delete') {
+                        var id = req.body.id;
+                        mindmap.removeNode(id, function (err, mindmap) {
                                 if (err) {
                                     console.error("Failed to edit node.", err);
                                 } else {
@@ -80,15 +86,6 @@ router.route('/:id/nodes')
                                     }
                                 }
                             });
-                        } else {
-                            mindmap.editNode(id, name, function (err, mindmap) {
-                                if (err) {
-                                    console.error("Failed to edit node.", err);
-                                } else {
-                                    res.redirect('/mindmap/' + _id);
-                                }
-                            });
-                        }
                     } else {
                         console.error("Unknown _method " + _method);
                     }
