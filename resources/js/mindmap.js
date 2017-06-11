@@ -1,5 +1,10 @@
 var _id;
-var svg = d3.select('#mindmap');
+var _data;
+var width = $('#mindmap-container').width();
+var height = $(document).height() * 0.8;
+var svg = d3.select('#mindmap')
+    .attr('width', width)
+    .attr('height', height);
 var g = svg.append('g').attr("transform", "translate(40,0)");
 var tree = d3.tree();
 
@@ -12,12 +17,18 @@ function load(id) {
 }
 
 function onNodes(data) {
+    _data = data;
+
     var root = d3.hierarchy(data);
-    tree(root);
     draw(root);
 }
 
 function draw(root) {
+    g.selectAll("*").remove();
+
+    tree = tree.size([height, width * 0.8]);
+    tree(root);
+
     var link = g.selectAll(".link")
         .data(root.descendants().slice(1))
         .enter().append("path")
@@ -43,13 +54,7 @@ function draw(root) {
             $('#add-node-modal').modal();
         });
     node.append("text")
-        .attr("dy", 3)
-        .attr("x", function (d) {
-            return d.children ? -10 : 10;
-        })
-        .style("text-anchor", function (d) {
-            return d.children ? "end" : "start";
-        })
+        .attr("dy", -10)
         .text(function (d) {
             return d.data.name
         })
@@ -61,10 +66,14 @@ function draw(root) {
 }
 
 $(window).on('resize', function () {
-    var width = $('#mindmap-container').width();
-    var height = $(document).height() * 0.8;
+    width = $('#mindmap-container').width();
+    height = $(document).height() * 0.8;
 
     svg.attr('width', width);
     svg.attr('height', height);
+
+    if (_data) {
+        var root = d3.hierarchy(_data);
+        draw(root);
+    }
 });
-$(window).resize();
