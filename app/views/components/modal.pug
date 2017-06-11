@@ -5,10 +5,11 @@
                 button.close(type="button" data-dismiss="modal") &times;
                 h4.modal-title New Node
             .modal-body
-                input.form-control(type="text" placeholder="Enter new node's name")
+                input#add-node-modal-name.form-control(type="text" placeholder="Enter new node's name")
+                input#add-node-modal-parent.hidden(type="hidden" hidden)
             .modal-footer
                 button.btn.btn-default(type="button" data-dismiss="modal") Cancel
-                button.btn.btn-primary(type="button") Add node
+                button.btn.btn-primary(type="button" onclick="addNode()") Add node
 
 #edit-node-modal.modal.fade(role="dialog")
     .modal-dialog
@@ -17,7 +18,8 @@
                 button.close(type="button" data-dismiss="modal") &times;
                 h4.modal-title Edit Node
             .modal-body
+                input#edit-node-modal-id.hidden(type="hidden" hidden)
                 input#edit-node-modal-name.form-control(type="text")
             .modal-footer
                 button.btn.btn-default(type="button" data-dismiss="modal") Cancel
-                button.btn.btn-primary(type="button") Edit node
+                button.btn.btn-primary(type="button" onclick="editNode()") Edit node

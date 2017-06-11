@@ -37,6 +37,7 @@ function draw(root) {
     node.append("circle")
         .attr("r", 8)
         .on('click', function (d) {
+            $('#add-node-modal-parent').val(d.data.id);
             $('#add-node-modal').modal();
         });
 
@@ -53,8 +54,35 @@ function draw(root) {
         })
         .on('click', function (d) {
             $('#edit-node-modal-name').val(d.data.name);
+            $('#edit-node-modal-id').val(d.data.id);
             $('#edit-node-modal').modal();
         });
+}
+
+function addNode() {
+    var $name = $('#add-node-modal-name');
+    var name = $name.val();
+    var parent = $('#add-node-modal-parent').val();
+
+    if (name) {
+        console.log("name: " + name + ", parent: " + parent);
+    } else {
+        $name.attr('placeholder', "Name is empty. Please enter new node's name");
+        $name.focus();
+    }
+}
+
+function editNode() {
+    var $name = $('#add-node-modal-name');
+    var id = $('#edit-node-modal-id').val();
+    var name = $name.val();
+
+    if (name) {
+        console.log("id: " + id + ", name: " + name);
+    } else {
+        $name.attr('placeholder', "Name is empty. Please enter new node's name");
+        $name.focus();
+    }
 }
 
 $(window).on('resize', function () {

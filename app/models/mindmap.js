@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uuid = require('uuid/v4');
 
 var schema = new mongoose.Schema({
     owener: mongoose.Schema.ObjectId,
@@ -13,6 +14,7 @@ schema.statics.create = function (owener, title, callback) {
         owener: owener,
         title: title,
         nodes: {
+            id: uuid(),
             name: title,
             children: []
         }
