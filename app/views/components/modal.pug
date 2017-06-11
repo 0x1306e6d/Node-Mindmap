@@ -1,0 +1,23 @@
+#add-node-modal.modal.fade(role="dialog")
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type="button" data-dismiss="modal") &times;
+                h4.modal-title New Node
+            .modal-body
+                input.form-control(type="text" placeholder="Enter new node's name")
+            .modal-footer
+                button.btn.btn-default(type="button" data-dismiss="modal") Cancel
+                button.btn.btn-primary(type="button") Add node
+
+#edit-node-modal.modal.fade(role="dialog")
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type="button" data-dismiss="modal") &times;
+                h4.modal-title Edit Node
+            .modal-body
+                input#edit-node-modal-name.form-control(type="text")
+            .modal-footer
+                button.btn.btn-default(type="button" data-dismiss="modal") Cancel
+                button.btn.btn-primary(type="button") Edit node

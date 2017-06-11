@@ -35,7 +35,10 @@ function draw(root) {
         });
 
     node.append("circle")
-        .attr("r", 2.5);
+        .attr("r", 8)
+        .on('click', function (d) {
+            $('#add-node-modal').modal();
+        });
 
     node.append("text")
         .attr("dy", 3)
@@ -47,6 +50,10 @@ function draw(root) {
         })
         .text(function (d) {
             return d.data.name
+        })
+        .on('click', function (d) {
+            $('#edit-node-modal-name').val(d.data.name);
+            $('#edit-node-modal').modal();
         });
 }
 
