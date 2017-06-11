@@ -3,6 +3,13 @@ const passport = require('passport');
 
 const router = express.Router();
 
+router.get('/signout', function (req, res) {
+    if (req.isAuthenticated()) {
+        req.logout();
+    }
+    res.redirect('/');
+});
+
 router.use(function (req, res, next) {
     if (req.isUnauthenticated()) {
         next();
@@ -13,7 +20,7 @@ router.use(function (req, res, next) {
 
 router.route('/signin')
     .get(function (req, res) {
-        res.render('layouts/signin');
+        res.render('layouts/signin', {message: req.flash('signin')});
     })
     .post(passport.authenticate('local-signin', {
             successRedirect: '/',
@@ -24,7 +31,7 @@ router.route('/signin')
 
 router.route('/signup')
     .get(function (req, res) {
-        res.render('layouts/signup');
+        res.render('layouts/signup', {message: req.flash('signup')});
     })
     .post(passport.authenticate('local-signup', {
             successRedirect: '/',

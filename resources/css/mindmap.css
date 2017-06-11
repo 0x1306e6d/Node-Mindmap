@@ -1,0 +1,31 @@
+.node {
+    cursor: pointer;
+}
+
+.node circle {
+    fill: #7f8c8d;
+}
+
+.node circle:hover {
+    fill: #2980b9;
+}
+
+.node text {
+    font: 16px sans-serif;
+    text-anchor: middle;
+}
+
+.node text:hover {
+    fill: #2980b9;
+}
+
+.node--internal circle {
+    fill: #95a5a6;
+}
+
+.link {
+    fill: none;
+    stroke: #7f8c8d;
+    stroke-opacity: 0.4;
+    stroke-width: 2px;
+}
