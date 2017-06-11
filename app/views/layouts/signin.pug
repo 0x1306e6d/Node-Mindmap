@@ -12,6 +12,12 @@ block body
             a.sign-brand(href="/") Mindmap
         .row
             .col-xs-offset-2.col-xs-8.col-sm-offset-3.col-sm-6.col-lg-offset-4.col-lg-4
+
+                if (message.length > 0)
+                    .alert.alert-warning.alert-dismissable.fade.in
+                        a.close(href="#" data-dismiss="alert" aria-label="close") &times;
+                        p.text-center=message
+
                 form(action="/auth/signin" method="POST")
                     .form-group
                         label(for="username") username
