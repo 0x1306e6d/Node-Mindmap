@@ -16,7 +16,7 @@
 #edit-node-modal.modal.fade(role="dialog")
     .modal-dialog
         .modal-content
-            form(action='/mindmap/' + mindmap._id + '/nodes' method="post")
+            form#edit-node-form(action='/mindmap/' + mindmap._id + '/nodes' method="post")
                 .modal-header
                     button.close(type="button" data-dismiss="modal") &times;
                     h4.modal-title Edit Node
@@ -24,6 +24,16 @@
                     input.hidden(type="hidden" name="_method" value="edit")
                     input#edit-node-modal-id.hidden(type="hidden" name="id" hidden)
                     input#edit-node-modal-name.form-control(type="text" name="name" required)
+                    input#edit-node-modal-remove.hidden(type="checkbox" name="remove" checked="false" hidden)
                 .modal-footer
                     button.btn.btn-default(type="button" data-dismiss="modal") Cancel
-                    button.btn.btn-primary(type="submit") Edit node
+                    .btn-group
+                        button.btn.btn-primary(type="submit") Edit node
+                        button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                            span.caret
+                            span.sr-only Toggle Dropdown
+                        ul.dropdown-menu
+                            li(onclick="$('#edit-node-form').submit()")
+                                a(href="#") Edit node
+                            li(onclick="$('#edit-node-modal-remove').attr('checked', true);$('#edit-node-form').submit()")
+                                a(href="#") Remove node

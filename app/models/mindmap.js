@@ -48,6 +48,23 @@ schema.methods.editNode = function (id, name, callback) {
     }
 };
 
+schema.methods.removeNode = function (id, callback) {
+    if (this.nodes.id === id) {
+        this.remove(function (err) {
+            if (err) {
+                callback(err);
+            } else {
+                callback(null);
+            }
+        });
+    } else {
+        if (removeChild(this.nodes, id)) {
+            this.markModified('nodes');
+            this.save(callback);
+        }
+    }
+};
+
 function findNode(node, id) {
     if (node.id === id) {
         return node;
@@ -62,6 +79,22 @@ function findNode(node, id) {
         }
         return null;
     }
+}
+
+function removeChild(node, id) {
+    var len = node.children.length;
+    for (var i = 0; i < len; i++) {
+        var child = node.children[i];
+        if (child.id === id) {
+            node.children.splice(i, 1);
+            return true;
+        } else {
+            if (removeChild(child, id)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 module.exports = mongoose.model('mindmap', schema);
