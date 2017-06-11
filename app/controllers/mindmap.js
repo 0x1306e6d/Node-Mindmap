@@ -68,7 +68,7 @@ router.route('/:id/nodes')
                         var name = req.body.name;
                         var remove = req.body.remove;
 
-                        if (remove) {
+                        if (remove === true) {
                             mindmap.removeNode(id, function (err, mindmap) {
                                 if (err) {
                                     console.error("Failed to edit node.", err);
