@@ -55,8 +55,9 @@ function findNode(node, id) {
         var len = node.children.length;
         for (var i = 0; i < len; i++) {
             var child = node.children[i];
-            if (findNode(child, id)) {
-                return child;
+            var result = findNode(child, id);
+            if (result) {
+                return result;
             }
         }
         return null;
