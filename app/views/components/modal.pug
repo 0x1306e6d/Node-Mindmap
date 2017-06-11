@@ -1,0 +1,29 @@
+#add-node-modal.modal.fade(role="dialog")
+    .modal-dialog
+        .modal-content
+            form(action='/mindmap/' + mindmap._id + '/nodes' method="post")
+                .modal-header
+                    button.close(type="button" data-dismiss="modal") &times;
+                    h4.modal-title New Node
+                .modal-body
+                    input.hidden(type="hidden" name="_method" value="add")
+                    input#add-node-modal-name.form-control(type="text" name="name" placeholder="Enter new node's name" required)
+                    input#add-node-modal-parent.hidden(type="hidden" name="parent" hidden)
+                .modal-footer
+                    button.btn.btn-default(type="button" data-dismiss="modal") Cancel
+                    button.btn.btn-primary(type="submit") Add node
+
+#edit-node-modal.modal.fade(role="dialog")
+    .modal-dialog
+        .modal-content
+            form(action='/mindmap/' + mindmap._id + '/nodes' method="post")
+                .modal-header
+                    button.close(type="button" data-dismiss="modal") &times;
+                    h4.modal-title Edit Node
+                .modal-body
+                    input.hidden(type="hidden" name="_method" value="edit")
+                    input#edit-node-modal-id.hidden(type="hidden" name="id" hidden)
+                    input#edit-node-modal-name.form-control(type="text" name="name" required)
+                .modal-footer
+                    button.btn.btn-default(type="button" data-dismiss="modal") Cancel
+                    button.btn.btn-primary(type="submit") Edit node
