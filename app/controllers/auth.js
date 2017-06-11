@@ -3,6 +3,13 @@ const passport = require('passport');
 
 const router = express.Router();
 
+router.get('/signout', function (req, res) {
+    if (req.isAuthenticated()) {
+        req.logout();
+    }
+    res.redirect('/');
+});
+
 router.use(function (req, res, next) {
     if (req.isUnauthenticated()) {
         next();
