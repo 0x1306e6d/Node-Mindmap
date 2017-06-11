@@ -1,9 +1,12 @@
+var _id;
+var socket = io();
 var svg = d3.select('#mindmap');
 var g = svg.append('g').attr("transform", "translate(40,0)");
 var tree = d3.tree().size([800, 600]);
 
 function load(id) {
-    var socket = io();
+    _id = id;
+
     socket.on('nodes', onNodes);
     socket.emit('nodes', id);
 }
@@ -65,7 +68,10 @@ function addNode() {
     var parent = $('#add-node-modal-parent').val();
 
     if (name) {
-        console.log("name: " + name + ", parent: " + parent);
+        socket.emit('add-node', _id, {
+            name: name,
+            parent: parent
+        });
     } else {
         $name.attr('placeholder', "Name is empty. Please enter new node's name");
         $name.focus();
@@ -73,12 +79,15 @@ function addNode() {
 }
 
 function editNode() {
-    var $name = $('#add-node-modal-name');
+    var $name = $('#edit-node-modal-name');
     var id = $('#edit-node-modal-id').val();
     var name = $name.val();
 
     if (name) {
-        console.log("id: " + id + ", name: " + name);
+        socket.emit('edit-node', _id, {
+            id: id,
+            name: name
+        });
     } else {
         $name.attr('placeholder', "Name is empty. Please enter new node's name");
         $name.focus();
