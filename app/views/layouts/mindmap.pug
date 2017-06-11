@@ -3,16 +3,20 @@ extends ../layout
 append meta
     title= mindmap.title
 
+append style
+    link(rel="stylesheet" href="/css/mindmap.css")
+
 block body
     include ../components/navbar
 
     .container
         .row
-            .col-xs-12.col-lg-8
-                svg(onload='load("' + mindmap._id + '")')
+            #mindmap-container.col-xs-12.col-lg-8
+                svg#mindmap(onload='load("' + mindmap._id + '")')
             .col-xs-12.col-lg-4
                 .list-group
 
 append script
     script(src="/socket.io/socket.io.js")
+    script(src="/js/d3.min.js")
     script(src="/js/mindmap.js")
